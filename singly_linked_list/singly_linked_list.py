@@ -32,7 +32,6 @@ class LinkedList:
             head_value = self.head.value
             self.head = None
             self.tail = None
-            # !(Not sure exactly why we return the head_value?)
             return head_value
 
         # If we have more elements in the list
@@ -42,8 +41,7 @@ class LinkedList:
         return head_value
 
     def remove_tail(self):
-        if not self.tail:
-            return None
+        current_node = self.head
 
         # there is only on elemenet in the list, so remove it.
         if self.head.next_node is None:
@@ -52,9 +50,8 @@ class LinkedList:
             self.tail = None
             return tail_value
         else:
-            current_node = self.head.value
-            if current_node.next_node is None:
-                tail_value = self.tail.value
+            if current_node.next_node is self.tail:
+                tail_value = current_node.next_node
                 self.tail = current_node
                 current_node.next_node = None
                 return tail_value
