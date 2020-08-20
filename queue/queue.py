@@ -90,3 +90,20 @@ class LinkedList:
             head_value = self.head.value
             self.head = self.head.next_node
             return head_value
+
+    def remove_tail(self):
+        if not self.tail:
+            return None
+        current_node = self.head
+        # there is only on elemenet in the list, so remove it.
+        if current_node.next_node is None:
+            tail_value = self.tail.value
+            self.head = None
+            self.tail = None
+            return tail_value
+        else:
+            if current_node.next_node is self.tail:
+                tail_value = current_node.next_node.value
+                self.tail = current_node
+                current_node.next_node = None
+                return tail_value
