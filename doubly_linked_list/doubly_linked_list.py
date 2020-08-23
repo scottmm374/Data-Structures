@@ -55,7 +55,19 @@ class DoublyLinkedList:
     """
 
     def remove_from_head(self):
-        pass
+        if self.head is None:
+            return None
+        if self.head.next is None:
+            head_val = self.head.value
+            self.head = None
+            self.tail = None
+            self.length -= 1
+            return head_val
+        else:
+            head_val = self.head.value
+            self.head = self.head.next
+            self.length -= 1
+            return head_val
 
     """
     Wraps the given value in a ListNode and inserts it 
@@ -83,8 +95,19 @@ class DoublyLinkedList:
     """
 
     def remove_from_tail(self):
-        pass
-
+        if self.tail is None:
+            return None
+        if self.tail.prev is None:
+            tail_val = self.tail.value
+            self.tail = None
+            self.head = None
+            self.length -= 1
+            return tail_val
+        else:
+            tail_val = self.tail.value
+            self.tail = self.tail.prev
+            self.length -= 1
+            return tail_val
     """
     Removes the input node from its current spot in the 
     List and inserts it as the new head node of the List.
