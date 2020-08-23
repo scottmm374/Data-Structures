@@ -129,8 +129,27 @@ class DoublyLinkedList:
     order of the other elements of the List.
     """
 
-    def delete(self, node):
-        pass
+    # def delete(self, node):
+    #     if node is None:
+    #         return None
+    #     if node.value is self.head.value:
+    #         # val = self.head.value
+
+    #         # self.length -= 1
+    #         # return val
+    #     if node.value is self.tail.value:
+    #         # val = self.tail.value
+
+    #         # self.length -= 1
+    #         # return val
+    #     else:
+    #         val = node.value
+    #         node.prev.next = node.next
+    #         node.next.prev = node.prev
+    #         node.next = None
+    #         node.prev = None
+    #         self.length -= 1
+    #         return val
 
     """
     Finds and returns the maximum value of all the nodes 
@@ -138,4 +157,25 @@ class DoublyLinkedList:
     """
 
     def get_max(self):
-        pass
+        if not self.head:
+            return None
+        max_value = self.head.value
+        current_node = self.head
+        while current_node:
+            if current_node.value > max_value:
+                max_value = current_node.value
+            current_node = current_node.next
+        return max_value
+
+# ! This one stalls tests
+    # def get_max(self):
+    #     if not self.head:
+    #         return None
+    #     current_max = self.head.value
+    #     current_node = self.head
+    #     while current_node:
+    #         if current_node.value > current_max:
+    #             current_max = current_node.value
+    #! Had this further in and stalled tests?
+        #         current_node = current_node.next
+        # return current_max
