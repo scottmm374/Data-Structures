@@ -41,17 +41,20 @@ class Stack:
         self.size = 0
         self.storage = LinkedList()
 
+    def __str__(self):
+        return f'{self.size} : {self.storage}'
+
     def __len__(self):
         return self.size
 
     def push(self, value):
-        self.storage.add_to_tail(value)
+        self.storage.add_to_head(value)
         self.size = self.size + 1
-        return value
+        print(value)
 
     def pop(self):
         if self.size >= 1:
-            val = self.storage.remove_head()
+            val = self.storage.remove_tail()
             self.size = self.size - 1
             return val
         else:
@@ -66,37 +69,49 @@ class Node:
 
 class LinkedList:
     def __init__(self):
-        # stores a node that is beginning of list
         self.head = None
-        # stores a node that is the end of the list
         self.tail = None
+
+    def __str__(self):
+        output = " "
+        current = self.head
+        while current is not None:
+            output += f'{current.value} ->'
+            current = current.next_node
+
+        return output
 
     def add_to_tail(self, value):
         new_node = Node(value)
 
-        if self.head is None and self.tail is None:  # list is empty
+        if self.head is None and self.tail is None:
             self.head = new_node
             self.tail = new_node
 
         else:
-            # point current tail to the new_node
             self.tail.next_node = new_node
-            # Then move tail to new_node
             self.tail = new_node
 
+    def add_to_head(self, value):
+        if self.head is None:
+            new_node = Node(value)
+            self.head = new_node
+            self.tail = new_node
+        else:
+            new_node = Node(value)
+            new_node.next = self.head
+            self.head = new_node
+
     def remove_head(self):
-        if not self.head:   # list is empty, so nothing to do
+        if not self.head:
             return None
-        # Checking here if only one element in the list (If next node is none, then we know 1 element in list)
         if self.head.next_node is None:
             head_value = self.head.value
             self.head = None
             self.tail = None
             return head_value
         else:
-            # If we have more elements in the list
-            head_value = self.head.value    # Grabbing the current head value I think
-        # Then pointing the next.node to head, which removed pointer from current head
+            head_value = self.head.value
             self.head = self.head.next_node
             return head_value
 
@@ -104,7 +119,6 @@ class LinkedList:
         if not self.tail:
             return None
         current_node = self.head
-        # there is only on elemenet in the list, so remove it.
         if current_node.next_node is None:
             tail_value = self.tail.value
             self.head = None
@@ -116,3 +130,17 @@ class LinkedList:
                 self.tail = current_node
                 current_node.next_node = None
                 return tail_value
+
+
+testing_list = Stack()
+print(testing_list, "1")
+testing_list.push(100)
+print(testing_list, "2")
+testing_list.push(101)
+print(testing_list, "3")
+testing_list.push(105)
+print(testing_list, "4")
+testing_list.pop()
+testing_list.pop()
+testing_list.pop()
+print(testing_list, "list")

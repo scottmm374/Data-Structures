@@ -11,6 +11,15 @@ class LinkedList:
         # stores a node that is the end of the list
         self.tail = None
 
+    def __str__(self):
+        output = " "
+        current = self.head
+        while current is not None:
+            output += f'{current.value} ->'
+            current = current.next_node
+
+        return output
+
     def add_to_tail(self, value):
         new_node = Node(value)
 
@@ -56,3 +65,12 @@ class LinkedList:
                 self.tail = current_node
                 current_node.next_node = None
                 return tail_value
+
+
+linked = LinkedList()
+linked.add_to_tail(10)
+linked.add_to_tail(6)
+linked.add_to_tail(7)
+linked.remove_head()
+linked.remove_tail()
+print(linked)
