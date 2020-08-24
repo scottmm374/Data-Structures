@@ -129,7 +129,13 @@ class DoublyLinkedList:
     """
 
     def move_to_front(self, node):
-        pass
+        if self.length == 0:
+            return
+        if node is self.head:
+            return
+        old_value = node.value
+        self.delete(node)
+        self.add_to_head(old_value)
 
     """
     Removes the input node from its current spot in the
@@ -137,7 +143,13 @@ class DoublyLinkedList:
     """
 
     def move_to_end(self, node):
-        pass
+        if self.length == 0:
+            return
+        if node is self.tail:
+            return
+        old_value = node.value
+        self.delete(node)
+        self.add_to_tail(old_value)
 
     """
     Deletes the input node from the List, preserving the
@@ -145,10 +157,11 @@ class DoublyLinkedList:
     """
 
     def delete(self, node):
-        # !Do you need to check for nodes since your sepcifically checking for a single node?
+        # Check for no items in list
         if self.head is None:
             print("NOthing in the list")
             return None
+            # Checking for one element, and if it matches node
         if self.length == 1:
             if self.head != node:
                 print("Only one element, but not Node")
@@ -159,7 +172,7 @@ class DoublyLinkedList:
                 self.tail = None
                 self.length -= 1
                 return node
-
+        # If head or tail matches Node, below runs
         elif self.head == node and self.tail != node:
             print("removing head")
             self.remove_from_head()
@@ -168,7 +181,7 @@ class DoublyLinkedList:
             print("removing tail")
             self.remove_from_tail()
             return self.tail.value
-
+    # If more then one element in list, and node != to head or tail this section runs
         else:
             print("Somewhere in the middle")
             prev_node = node.prev
@@ -211,5 +224,5 @@ test_list.add_to_head(3)
 
 print(test_list)
 
-test_list.delete(test_list.tail.prev)
+test_list.delete(test_list.tail)
 print(test_list)
