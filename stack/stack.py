@@ -49,16 +49,13 @@ class Stack:
 
     def push(self, value):
         self.storage.add_to_head(value)
-        self.size = self.size + 1
-        print(value)
+        self.size += 1
 
     def pop(self):
-        if self.size >= 1:
-            val = self.storage.remove_tail()
-            self.size = self.size - 1
-            return val
-        else:
+        if self.size == 0:
             return None
+        self.size -= 1
+        return self.storage.remove_head()
 
 
 class Node:
@@ -104,16 +101,19 @@ class LinkedList:
 
     def remove_head(self):
         if not self.head:
+            print("wrong spot")
             return None
-        if self.head.next_node is None:
-            head_value = self.head.value
+        elif self.head.next_node is None:
+            head = self.head
             self.head = None
             self.tail = None
-            return head_value
+            print(head.value, "if one node")
+            return head.value
         else:
-            head_value = self.head.value
+            head = self.head
             self.head = self.head.next_node
-            return head_value
+            print(head.value, "more then one")
+            return head.value
 
     def remove_tail(self):
         if not self.tail:
@@ -135,12 +135,21 @@ class LinkedList:
 testing_list = Stack()
 print(testing_list, "1")
 testing_list.push(100)
+print(testing_list.size, "length")
 print(testing_list, "2")
 testing_list.push(101)
+print(testing_list.size, "length")
 print(testing_list, "3")
 testing_list.push(105)
+print(testing_list.size, "length")
 print(testing_list, "4")
 testing_list.pop()
+print(testing_list.size, "length")
+print(testing_list, "pop 1")
 testing_list.pop()
+print(testing_list.size, "length")
+print(testing_list, "pop 2")
 testing_list.pop()
+print(testing_list.size, "length")
+print(testing_list, "pop 3")
 print(testing_list, "list")
