@@ -96,7 +96,7 @@ class LinkedList:
             self.tail = new_node
         else:
             new_node = Node(value)
-            new_node.next = self.head
+            new_node.next_node = self.head
             self.head = new_node
 
     def remove_head(self):
