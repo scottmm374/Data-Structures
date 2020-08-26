@@ -9,6 +9,8 @@ This part of the project comprises two days:
 2. Implement the `in_order_print`, `bft_print`, and `dft_print` methods
    on the BSTNode class.
 """
+
+
 class BSTNode:
     def __init__(self, value):
         self.value = value
@@ -17,69 +19,113 @@ class BSTNode:
 
     # Insert the given value into the tree
     def insert(self, value):
-        pass
+        # compare values to detrmine direction
+        if value >= self.value:
+            # if there is no node on the right, insert value
+            if self.right is None:
+                self.right = BSTNode(value)
+            else:
+                # Same as
+                # right_child = self.right
+                # right_child = BSTNode(value)
+                self.right.insert(value)
+        else:
+            if self.left is None:
+                self.left = BSTNode(value)
+            else:
+                self.left.insert(value)
 
-    # Return True if the tree contains the value
-    # False if it does not
+                # Return True if the tree contains the value
+                # False if it does not
+
     def contains(self, target):
-        pass
+        # Contains:
+        # Compare target value to node.value
+        if target == self.value:
+            return True
+            # ! CHECKING RIGHT
+        if target > self.value:
+            # If no NODE were DONE
+            if self.right == None:
+                return False
+                # If NODE check target against Right Value
+            elif self.right.value == target:
+                return True
+            else:
+                # Calling function again on RIGHT side of tree
+                self.right.contains(target)
+            # ! CHECKING THE LEFT
+        else:
+            # If no NODE were DONE
+            if self.left == None:
+                return False
+                # If NODE check target against Right Value
+            elif self.left.value == target:
+                return True
+            else:
+                # Calling function again on left side of tree
+                self.left.contains(target)
 
-    # Return the maximum value found in the tree
-    def get_max(self):
-        pass
 
-    # Call the function `fn` on the value of each node
-    def for_each(self, fn):
-        pass
+#     # Return the maximum value found in the tree
+#     def get_max(self):
+#         pass
 
-    # Part 2 -----------------------
+#     # Call the function `fn` on the value of each node
+#     def for_each(self, fn):
+#         pass
 
-    # Print all the values in order from low to high
-    # Hint:  Use a recursive, depth first traversal
-    def in_order_print(self):
-        pass
+#     # Part 2 -----------------------
 
-    # Print the value of every node, starting with the given node,
-    # in an iterative breadth first traversal
-    def bft_print(self):
-        pass
+#     # Print all the values in order from low to high
+#     # Hint:  Use a recursive, depth first traversal
+#     def in_order_print(self):
+#         pass
 
-    # Print the value of every node, starting with the given node,
-    # in an iterative depth first traversal
-    def dft_print(self):
-        pass
+#     # Print the value of every node, starting with the given node,
+#     # in an iterative breadth first traversal
+#     def bft_print(self):
+#         pass
 
-    # Stretch Goals -------------------------
-    # Note: Research may be required
+#     # Print the value of every node, starting with the given node,
+#     # in an iterative depth first traversal
+#     def dft_print(self):
+#         pass
 
-    # Print Pre-order recursive DFT
-    def pre_order_dft(self):
-        pass
+#     # Stretch Goals -------------------------
+#     # Note: Research may be required
 
-    # Print Post-order recursive DFT
-    def post_order_dft(self):
-        pass
+#     # Print Pre-order recursive DFT
+#     def pre_order_dft(self):
+#         pass
 
-"""
-This code is necessary for testing the `print` methods
-"""
-bst = BSTNode(1)
+#     # Print Post-order recursive DFT
+#     def post_order_dft(self):
+#         pass
+
+
+# """
+# This code is necessary for testing the `print` methods
+# """
+# bst = BSTNode(1)
+bst = BSTNode(5)
 
 bst.insert(8)
-bst.insert(5)
+# bst.insert(5)
 bst.insert(7)
 bst.insert(6)
 bst.insert(3)
 bst.insert(4)
 bst.insert(2)
+bst.contains(6)
 
-bst.bft_print()
-bst.dft_print()
+# bst.bft_print()
+# bst.dft_print()
 
-print("elegant methods")
-print("pre order")
-bst.pre_order_dft()
-print("in order")
-bst.in_order_dft()
-print("post order")
-bst.post_order_dft()  
+# print("elegant methods")
+# print("pre order")
+# bst.pre_order_dft()
+# print("in order")
+# bst.in_order_dft()
+# print("post order")
+# bst.post_order_dft()

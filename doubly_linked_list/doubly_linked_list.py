@@ -81,6 +81,7 @@ class DoublyLinkedList:
         else:
             head_val = self.head.value
             self.head = self.head.next
+            #self.head.prev = None
             self.length -= 1
             return head_val
 
@@ -218,11 +219,11 @@ test_list.add_to_head(2)
 
 test_list.add_to_head(3)
 
-# test_list.add_to_head(4)
+test_list.add_to_head(4)
 
-# test_list.add_to_head(5)
+test_list.add_to_head(5)
 
 print(test_list)
 
-test_list.delete(test_list.tail)
+test_list.delete(test_list.tail.prev)
 print(test_list)
