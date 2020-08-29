@@ -119,7 +119,16 @@ class BSTNode:
     # Hint:  Use a recursive, depth first traversal
 
     def in_order_print(self):
-        pass
+
+        if self.value is None:
+            return
+        if self.left:
+            self.left.in_order_print()
+
+        print(self.value)
+
+        if self.right:
+            self.right.in_order_print()
 
     # Print the value of every node, starting with the given node,
     # in an iterative breadth first traversal
@@ -129,20 +138,20 @@ class BSTNode:
         # Print the value of every node, starting with the given node,
         # in an iterative depth first traversal
 
-    def dft_print(self):
-        curr_node = self
-        stack = Stack()
-        stack.push(curr_node)
+    # def dft_print(self):
+    #     curr_node = self
+    #     stack = Stack()
+    #     stack.push(curr_node)
 
-        while len(stack) > 0:
-            curr_node = stack.pop()
-            print(curr_node.value)
+    #     while len(stack) > 0:
+    #         curr_node = stack.pop()
+    #         print(curr_node.value)
 
-            if curr_node.left is not None:
-                stack.push(curr_node.left)
+    #         if curr_node.left is not None:
+    #             stack.push(curr_node.left)
 
-            if curr_node.right is not None:
-                stack.push(curr_node.right)
+    #         if curr_node.right is not None:
+    #             stack.push(curr_node.right)
 
     # Stretch Goals -------------------------
     # Note: Research may be required
@@ -173,13 +182,13 @@ bst.insert(4)
 bst.insert(2)
 
 # bst.bft_print()
-print("DFT print")
-bst.dft_print()
+# print("DFT print")
+# bst.dft_print()
 
 # print("elegant methods")
 # print("pre order")
 # bst.pre_order_dft()
-# print("in order")
-# # bst.in_order_print(bst)
+print("in order")
+bst.in_order_print()
 # print("post order")
 # bst.post_order_dft()
