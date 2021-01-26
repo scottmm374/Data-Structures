@@ -41,14 +41,15 @@ class Stack:
         self.size = 0
         self.storage = LinkedList()
 
-    def __str__(self):
-        return f'{self.size} : {self.storage}'
+    # def __str__(self):
+    #     return f'{self.size} : {self.storage}'
 
     def __len__(self):
         return self.size
 
     def push(self, value):
         self.storage.add_to_head(value)
+
         self.size += 1
 
     def pop(self):
@@ -63,20 +64,23 @@ class Node:
         self.value = value
         self.next_node = next_node
 
+    # def __str__(self):
+    #     return f'{self.value} : {self.next_node.value}'
+
 
 class LinkedList:
     def __init__(self):
         self.head = None
         self.tail = None
 
-    def __str__(self):
-        output = " "
-        current = self.head
-        while current is not None:
-            output += f'{current.value} ->'
-            current = current.next_node
+    # def __str__(self):
+    #     output = " "
+    #     current = self.head
+    #     while current is not None:
+    #         output += f'{current.value} ->'
+    #         current = current.next_node
 
-        return output
+    #     return output
 
     def add_to_tail(self, value):
         new_node = Node(value)
@@ -101,18 +105,17 @@ class LinkedList:
 
     def remove_head(self):
         if not self.head:
-            print("wrong spot")
             return None
         elif self.head.next_node is None:
             head = self.head
             self.head = None
             self.tail = None
-            print(head.value, "if one node")
+            # print(head.value, "pop value")
             return head.value
         else:
             head = self.head
             self.head = self.head.next_node
-            print(head.value, "more then one")
+            # print(head.value, "pop value")
             return head.value
 
     def remove_tail(self):
@@ -132,24 +135,24 @@ class LinkedList:
                 return tail_value
 
 
-testing_list = Stack()
-print(testing_list, "1")
-testing_list.push(100)
-print(testing_list.size, "length")
-print(testing_list, "2")
-testing_list.push(101)
-print(testing_list.size, "length")
-print(testing_list, "3")
-testing_list.push(105)
-print(testing_list.size, "length")
-print(testing_list, "4")
-testing_list.pop()
-print(testing_list.size, "length")
-print(testing_list, "pop 1")
-testing_list.pop()
-print(testing_list.size, "length")
-print(testing_list, "pop 2")
-testing_list.pop()
-print(testing_list.size, "length")
-print(testing_list, "pop 3")
-print(testing_list, "list")
+# testing_list = Stack()
+# print(testing_list, "1")
+# testing_list.push(100)
+# print(testing_list.size, "length")
+# print(testing_list, "2")
+# testing_list.push(101)
+# print(testing_list.size, "length")
+# print(testing_list, "3")
+# testing_list.push(105)
+# print(testing_list.size, "length")
+# print(testing_list, "4")
+# testing_list.pop()
+# print(testing_list.size, "length")
+# print(testing_list, "pop 1")
+# testing_list.pop()
+# print(testing_list.size, "length")
+# print(testing_list, "pop 2")
+# testing_list.pop()
+# print(testing_list.size, "length")
+# print(testing_list, "pop 3")
+# print(testing_list, "list")
